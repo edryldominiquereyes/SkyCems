@@ -1,0 +1,288 @@
+CRUDDY BY DESIGN
+
+1 CRONTROLLER = 1 CRUD
+1 Controller, 1 method = OKAY
+
+C = Create
+R = Read
+U = Update
+D = Delete
+
+View = index
+Store, 
+Add, 
+show, 
+update, 
+delete
+
+
+//Host Controller
+Dashboard Controller , Facility Controller, Profile Controller
+
+
+Controller 
+~Validation
+~$request->validated()
+
+WEb.php
+https://laravel.com/docs/9.x/controllers ~ "Actions Handled By Resource Controller"
+
+Front end
+
+------------------------------
+Changes in March 19, 2022
+Time: 11:03pm
+
+Fixed EventStatus Host 
+-added Conflict Schedule
+
+Fix Join button 
+-On going... 
+
+Add max capacity and add attendees count
+------------------------------
+Changes in March 22, 2022
+Time: 11:34pm
+Fixed Join button 
+Added max capacity and count
+
+When deploying make sure to uncomment the implements MustVerifyEmail in User.php and check .env for any changes and make sure to also change the 
+ReCaptcha localhost to online web url.
+
+Waiting for server for deployment and testing..
+
+testing for visitor and organizer 
+On going...
+
+ <!-- @php
+$date = new DateTime($event->end_time);
+$now = new DateTime('Asia/M
+if($date < $now) {
+    echo 'date is in the past';
+}
+@endphp -->
+
+------------------ISPROJ2D-----------------------------
+
+Added in migration 
+Phone number added -> unique()
+
+Added css style in app.css
+Added new js pstrength.js
+
+Changes in verify.blade.php in layouts
+
+Changes in blades
+-Registration blade added password strength
+
+
+From BookNotification.php
+ return (new MailMessage)
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
+
+
+Added Email notify user 
+
+-Admin activate and deactivate account notify user (Barangay Staff Email address)..
+
+-Changes capacity string to integers so that it doesnt accept negative numbers...
+
+Removed from Calendar blade php (Organizer){
+
+    <input type="checkbox" id="borrow" class=" @error('borrow') is-invalid @enderror" name="borrow[]" value="None">
+    <label for="borrow">None</label><br>
+    Removed None checkbox
+}
+
+Edited Calendar blade, calendar layouts, calendar.js, OrgReservationController.php
+Added show pending and approved events with color codes
+Removed for now status indicator in calendar page{
+    <h4 class="mt-3">Status Indicators</h4>
+            <span class="badge bg-warning text-dark">Yellow - Pending</span>
+            <span class="badge bg-success">Green - Approved</span>
+}
+
+In register I added first and last name validation only accepts letters.
+
+
+<td>
+                            <form role="form" method="POST" action="">
+                            @csrf
+                            <textarea id="remark" class="form-control @error('remark') is-invalid @enderror" name="remark" rows="5" cols="20">
+                                <input name="facility_id" type="hidden" placeholder="" value="{{$facility_id}}">
+                            </textarea>
+                            @error('remark')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            </from>
+                        </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Geolocate Removed
+
+<!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyD969hg-FGJTVKGpCj9_Ii0d8OraasCGm4"></script>
+<script>
+
+var searchInput = 'search_input';
+
+$(document).ready(function () {
+    var autocomplete;
+    autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+        types: ['geocode'],
+    });
+	
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var near_place = autocomplete.getPlace();
+        document.getElementById('loc_lat').value = near_place.geometry.location.lat();
+        document.getElementById('loc_long').value = near_place.geometry.location.lng();
+		
+        document.getElementById('latitude_view').innerHTML = near_place.geometry.location.lat();
+        document.getElementById('longitude_view').innerHTML = near_place.geometry.location.lng();
+    });
+});
+$(document).on('change', '#'+searchInput, function () {
+    document.getElementById('latitude_input').value = '';
+    document.getElementById('longitude_input').value = '';
+	
+    document.getElementById('latitude_view').innerHTML = '';
+    document.getElementById('longitude_view').innerHTML = '';
+});
+</script>
+
+Autocomplete location search input 
+<div class="form-group">
+    <label>Location:</label>
+    <input type="text" class="form-control" id="search_input" value="{{$maps->address}}" />
+    <input type="hidden" id="loc_lat" />
+    <input type="hidden" id="loc_long" />
+</div>
+
+Display latitude and longitude 
+<div class="latlong-view">
+    <p><b>Latitude:</b> <span id="latitude_view"></span></p>
+    <p><b>Longitude:</b> <span id="longitude_view"></span></p>
+</div> -->
+
+
+
+
+
+
+TBC
+
+@forelse ($data->notifications as $notification)
+                                <h4>{{$notification->data['contact']}}</h4>
+                                
+<div class="dropdown-content">
+                                <!-- Notification -->
+                                @forelse (auth()->user()->notifications as $notification)
+                                <h4>{{$notification->data['organizer']}}</h4>
+                               
+                                <hr>
+                                @empty
+                                <p>No notifications</p>
+
+                                @endforelse
+                            </div>
+
+
+
+
+
+ @forelse ($user->notifications as $notification)
+                                <h4>{{$notification->data['name']}}</h4>
+                                <h4>{{$notification->data['contact']}}</h4>
+                                <h4>{{$notification->data['reason']}}</h4>
+                                <h4>{{$notification->data['status']}}</h4>
+                                <hr>
+                                @empty
+                                <p>No notifications</p>
+
+                                @endforelse
+
+Display message ()
+<script>
+	$(document).ready(function(){
+		$("#myModal").modal('show');
+	});
+</script>
+<div id= "myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> SKYCEMS </h5>
+                <button type="button" class = "close" 
+                    data-bs-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Thank you for logging in to SKYCEMS. </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+--from eventstatus blade Removed
+
+<!-- <hr>
+<div class="row justify-content-center">
+
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Organizer</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Facility</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Borrow</th>
+                        <th scope="col">Remarks</th>
+                        <th scope="col">Date and Time</th>
+                        <th scope="col">Status</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    @empty
+                    <td colspan="11" class="text-center">Denied status will appear here</td>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> -->
+
+
+From manage blade organizer removed--
+<a type="button" class="btn btn-danger
+
+    href="{{ route('manage.cancel', ['id'=>$event->event_id]) }}" onClick="return confirm('ALERT: Are You Sure?');">Delete</a></td>
+
+
+     <a type="button" class="btn btn-danger" onClick="return confirm('ALERT: Are You Sure? this will end your event and your visitors will not be able to join and send feedback anymore');"
+                                        href="{{ route('manage.delete', ['id'=>$event->event_id]) }}">Finished</a></td>       
+
+
+
+//Select all function
+{{ route('event.approve', $attendee['id']) }} URL
